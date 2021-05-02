@@ -31,7 +31,7 @@ You can access to phpmyadmin by broswer on:
 
 In addtition I've confrgurated a  Email Catcher to  catch the emails sent by  wordpress.
 
-to do tha you must to include on the functions.php o your theme 
+to do that, you must to include in the functions.php of your theme the following code: 
 
 ```php 
 add_action( 'phpmailer_init', 'setup' );
