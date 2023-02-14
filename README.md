@@ -3,7 +3,7 @@
 This is an development enviroment that includes :
 
 - Wordpress
-- mysql:5.7
+- mariaDB 10.6.4-focal
 - phpmyadmin
 - mailhog
 
