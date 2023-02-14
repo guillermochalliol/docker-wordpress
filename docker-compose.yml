@@ -16,12 +16,23 @@ services:
       - ./wp:/var/www/html/
 
   db:
-    image: mysql:5.7
-    volumes:
-      - "./.data/db:/var/lib/mysql"
     env_file: env/local/db.env
-    command: --default-authentication-plugin=mysql_native_password
-
+  # We use a mariadb image which supports both amd64 & arm64 architecture
+    image: mariadb:10.6.4-focal
+    # If you really want to use MySQL, uncomment the following line
+    #image: mysql:8.0.27
+    command: '--default-authentication-plugin=mysql_native_password'
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     env_file: env/local/phpmyadmin.env
